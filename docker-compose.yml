@@ -2,10 +2,10 @@ services:
   app:
     build: .
     ports:
-      - "3000:3000"
+      - "${PORT:-3000}:${PORT:-3000}"
     environment:
-      - DATABASE_URL=${DATABASE_URL}
-      - PORT=${PORT}
+      - DATABASE_URL=${DATABASE_URL:-postgresql://postgres:postgres@db:5432/todo-app}
+      - PORT=${PORT:-3000}
     depends_on:
       db:
         condition: service_healthy
